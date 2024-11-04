@@ -3,6 +3,11 @@ async fn main() -> Result<(), reqwest::Error> {
     let terms_resp = fetch_terms().await?;
     println!("{terms_resp:#?}");
 
+    let current_term = terms_resp["currentTerm"][0]["value"]
+        .as_str()
+        .expect("No current term found");
+    println!("{current_term}");
+
     Ok(())
 }
 
